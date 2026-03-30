@@ -1,14 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>💕 A Minecraft Confession 💕</title>
-  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css"/>
 </head>
-
 <body>
 
   <div id="bg-layer"></div>
@@ -29,23 +27,23 @@
   <!-- ===== MAIN CARD ===== -->
   <div id="main-card" class="card">
     <div class="card-icons top-row">
-      <canvas class="ci" id="ci-grass" width="32" height="32"></canvas>
-      <canvas class="ci" id="ci-heart" width="32" height="32"></canvas>
-      <canvas class="ci" id="ci-flower" width="32" height="32"></canvas>
+      <canvas class="ci" id="ci-grass"   width="32" height="32"></canvas>
+      <canvas class="ci" id="ci-heart"   width="32" height="32"></canvas>
+      <canvas class="ci" id="ci-flower"  width="32" height="32"></canvas>
     </div>
 
     <h1 class="main-text">Too awkward to make<br>the first move.</h1>
-    <p class="sub-text">Maybe we could hang out again.</p>
+    <p  class="sub-text">Maybe we could hang out again.</p>
 
     <div class="card-icons bot-row">
       <canvas class="ci" id="ci-diamond" width="32" height="32"></canvas>
-      <canvas class="ci" id="ci-heart2" width="32" height="32"></canvas>
-      <canvas class="ci" id="ci-sword" width="32" height="32"></canvas>
+      <canvas class="ci" id="ci-heart2"  width="32" height="32"></canvas>
+      <canvas class="ci" id="ci-sword"   width="32" height="32"></canvas>
     </div>
 
     <div id="btn-row">
       <button id="yes-btn" class="pixel-btn yes-btn">✨ YES ✨</button>
-      <button id="no-btn" class="pixel-btn no-btn">NO</button>
+      <button id="no-btn"  class="pixel-btn no-btn">NO</button>
     </div>
 
     <p id="hint" class="hint-text">hover NO if you dare 🐷</p>
@@ -57,13 +55,18 @@
     <div id="yes-popup" class="pixel-popup">
       <div class="popup-hearts">❤ &nbsp; ❤ &nbsp; ❤</div>
       <p class="popup-msg">I miss hanging out with you</p>
+      <p class="popup-sub">🐷 oink oink 🐷</p>
       <div class="popup-hearts">❤ &nbsp; ❤ &nbsp; ❤</div>
     </div>
     <div id="confetti-layer"></div>
   </div>
 
+  <!-- Nhạc nền -->
+  <audio id="bg-music" loop>
+    <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg"/>
+  </audio>
+
   <script src="sprites.js"></script>
   <script src="script.js"></script>
 </body>
-
 </html>

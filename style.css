@@ -61,7 +61,7 @@ body.sunset #bg-layer {
 #entity-layer {
   position: fixed;
   bottom: 32px; left: 0; right: 0;
-  height: 80px;
+  height: 160px; /* Tăng chiều cao để chứa nhân vật lớn hơn */
   z-index: 4;
   pointer-events: none;
 }
