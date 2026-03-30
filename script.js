@@ -48,11 +48,11 @@ function init() {
         gctx.drawImage(tmp, tx, 0);
     }
 
-    // Chỉ sử dụng nhân vật Steve theo yêu cầu
-    MC.createMob('steve', 6, 55, 60, 1, entityLayer);
-    MC.createMob('steve', 6, 40, window.innerWidth * 0.7, -1, entityLayer);
-    MC.createMob('steve', 6, 35, window.innerWidth * 0.3, 1, entityLayer);
-    const beeCanvas = MC.createMob('steve', 5, 50, window.innerWidth * 0.55, -1, entityLayer);
+    // Sử dụng Bò, Lợn, Dê, Ong
+    MC.createMob('cow',  6, 35, 60,  1, entityLayer);
+    MC.createMob('pig',  6, 40, window.innerWidth * 0.7, -1, entityLayer);
+    MC.createMob('goat', 6, 45, window.innerWidth * 0.3, 1, entityLayer);
+    const beeCanvas = MC.createMob('bee', 5, 50, window.innerWidth * 0.55, -1, entityLayer);
     beeCanvas.style.bottom = '80px';
 
     function decorateCanvas(id, spriteName, scale) {
@@ -180,13 +180,6 @@ function spawnParticles() {
 
 function triggerYes(MC) {
     yesOverlay.classList.remove('hidden');
-
-    // Music playback
-    const bgMusic = document.getElementById('bg-music');
-    if (bgMusic) {
-        bgMusic.volume = 0.5;
-        bgMusic.play().catch(e => console.log('Audio autoplay blocked', e));
-    }
 
     setTimeout(() => {
         body.classList.add('sunset');

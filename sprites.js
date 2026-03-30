@@ -335,6 +335,51 @@ function beeFrame(wingPhase) {
   return { w:14, h:12, rows };
 }
 
+function cowFrame(legPhase) {
+  const B = '#111111', W = '#EEEEEE', G = '#888888', U = '#FFB3D4';
+  const rows = [];
+  rows.push([T,T,T,T,T,T,T,T,T,T,T,B,T,T,T,B]);
+  rows.push([T,T,W,W,W,B,W,B,W,W,W,B,W,W,W,B]);
+  rows.push([T,T,W,B,B,W,W,B,B,W,W,W,W,B,W,W]);
+  rows.push([T,T,W,W,W,W,W,W,W,W,W,W,G,G,G,G]);
+  rows.push([T,B,B,W,U,U,W,W,B,B,W,W,G,B,G,B]);
+  rows.push([T,B,B,W,U,U,W,W,B,B,W,W,G,G,G,G]);
+  rows.push([T,W,W,W,W,W,W,W,W,W,W,W,T,T,T,T]);
+  if (legPhase === 0) {
+    rows.push([T,T,W,B,T,T,T,T,T,B,W,T,T,T,T,T]);
+    rows.push([T,T,B,W,T,T,T,T,T,W,B,T,T,T,T,T]);
+    rows.push([T,T,W,B,T,T,T,T,T,B,W,T,T,T,T,T]);
+    rows.push([T,T,B,B,T,T,T,T,T,B,B,T,T,T,T,T]);
+  } else {
+    rows.push([T,T,B,W,T,T,T,T,T,W,B,T,T,T,T,T]);
+    rows.push([T,T,W,B,T,T,T,T,T,B,W,T,T,T,T,T]);
+    rows.push([T,T,B,W,T,T,T,T,T,W,B,T,T,T,T,T]);
+    rows.push([T,T,B,B,T,T,T,T,T,B,B,T,T,T,T,T]);
+  }
+  return { w:16, h:11, rows };
+}
+
+function goatFrame(legPhase) {
+  const W = '#E0DDDF', T1 = '#D2B48C', B = '#111111', H = '#CDBA96';
+  const rows = [];
+  rows.push([T,T,T,T,T,T,T,T,T,T,T,T,T,H,T,H]);
+  rows.push([T,T,W,W,W,W,W,W,W,W,W,W,W,W,W,W]);
+  rows.push([T,T,W,W,W,W,W,W,W,W,W,W,W,B,W,W]);
+  rows.push([T,T,W,W,W,W,W,W,W,W,W,W,W,W,W,W]);
+  rows.push([T,T,W,W,W,W,W,W,W,W,W,W,W,W,T,T]);
+  rows.push([T,T,W,W,W,W,W,W,W,W,W,W,T,T,T,T]);
+  if (legPhase === 0) {
+    rows.push([T,T,W,T1,T,T,T,T,T,T1,W,T,T,T,T,T]);
+    rows.push([T,T,T1,W,T,T,T,T,T,W,T1,T,T,T,T,T]);
+    rows.push([T,T,B,B,T,T,T,T,T,B,B,T,T,T,T,T]);
+  } else {
+    rows.push([T,T,T1,W,T,T,T,T,T,W,T1,T,T,T,T,T]);
+    rows.push([T,T,W,T1,T,T,T,T,T,T1,W,T,T,T,T,T]);
+    rows.push([T,T,B,B,T,T,T,T,T,B,B,T,T,T,T,T]);
+  }
+  return { w:16, h:9, rows };
+}
+
 function renderSprite(canvas, spriteObj, scale) {
   scale = scale || 2;
   const s = typeof spriteObj === 'function' ? spriteObj(0) : spriteObj;
@@ -371,6 +416,8 @@ function createMob(type, scale, speed, startX, dir, layer) {
     if (type === 'creeper') return creeperFrame(phase);
     if (type === 'pig')     return pigFrame(phase);
     if (type === 'bee')     return beeFrame(f % 2);
+    if (type === 'cow')     return cowFrame(phase);
+    if (type === 'goat')    return goatFrame(phase);
   }
 
   function draw() {
@@ -417,5 +464,5 @@ function createMob(type, scale, speed, startX, dir, layer) {
 
 window.MC = {
   SPRITES, renderSprite, drawRows, createMob,
-  steveFrame, creeperFrame, pigFrame, beeFrame
+  steveFrame, creeperFrame, pigFrame, beeFrame, cowFrame, goatFrame
 };
