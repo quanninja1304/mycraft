@@ -19,7 +19,7 @@ const expLayer   = document.getElementById('exp-layer');
 const confLayer  = document.getElementById('confetti-layer');
 const hint       = document.getElementById('hint');
 
-window.addEventListener('load', init);
+window.addEventListener('DOMContentLoaded', init);
 
 function init() {
   const MC = window.MC;
