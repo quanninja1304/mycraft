@@ -1,151 +1,67 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>💕 A Minecraft Confession 💕</title>
-  <link rel="stylesheet" href="style.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css"/>
 </head>
 <body>
 
-  <!-- Sparkles container -->
-  <div id="sparkles-container"></div>
+  <div id="bg-layer"></div>
+  <div id="particle-layer"></div>
+  <div id="cloud-layer"></div>
 
-  <!-- Floating background hearts -->
-  <div id="bg-hearts"></div>
-
-  <!-- Pixel clouds (visible after YES) -->
-  <div id="clouds-container"></div>
-
-  <!-- Floating Minecraft characters -->
-  <div class="character" id="steve">
-    <img src="https://www.minecraft.net/content/dam/games/minecraft/key-art/MC_The_Wild_Update_540x300.jpg" alt="" />
-    <!-- SVG Steve fallback -->
-    <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" class="pixel-char" id="steve-svg">
-      <!-- Head -->
-      <rect x="10" y="0" width="12" height="12" fill="#F5C28D"/>
-      <rect x="12" y="2" width="2" height="2" fill="#3D2B1F"/>
-      <rect x="18" y="2" width="2" height="2" fill="#3D2B1F"/>
-      <rect x="13" y="7" width="6" height="2" fill="#C1796A"/>
-      <rect x="14" y="7" width="4" height="1" fill="#8B3A2D"/>
-      <!-- Hair -->
-      <rect x="10" y="0" width="12" height="3" fill="#6B3A2A"/>
-      <rect x="10" y="0" width="2" height="5" fill="#6B3A2A"/>
-      <!-- Body -->
-      <rect x="9" y="12" width="14" height="10" fill="#3B6BC7"/>
-      <rect x="9" y="12" width="14" height="3" fill="#5588E8"/>
-      <!-- Arms -->
-      <rect x="5" y="12" width="4" height="10" fill="#F5C28D"/>
-      <rect x="23" y="12" width="4" height="10" fill="#F5C28D"/>
-      <!-- Legs -->
-      <rect x="9" y="22" width="6" height="10" fill="#2D4A99"/>
-      <rect x="17" y="22" width="6" height="10" fill="#2D4A99"/>
-    </svg>
+  <!-- Ground -->
+  <div id="ground-bar">
+    <canvas id="ground-canvas" height="32"></canvas>
   </div>
 
-  <div class="character" id="pig">
-    <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" class="pixel-char" id="pig-svg">
-      <!-- Body -->
-      <rect x="4" y="10" width="22" height="14" fill="#F4A4B8"/>
-      <!-- Head -->
-      <rect x="16" y="4" width="14" height="12" fill="#F4A4B8"/>
-      <!-- Snout -->
-      <rect x="22" y="10" width="8" height="6" fill="#E8849A"/>
-      <rect x="23" y="11" width="2" height="2" fill="#C0607A"/>
-      <rect x="27" y="11" width="2" height="2" fill="#C0607A"/>
-      <!-- Eyes -->
-      <rect x="18" y="6" width="2" height="2" fill="#333"/>
-      <rect x="24" y="6" width="2" height="2" fill="#333"/>
-      <!-- Ears -->
-      <rect x="16" y="2" width="4" height="4" fill="#F4A4B8"/>
-      <rect x="26" y="2" width="4" height="4" fill="#F4A4B8"/>
-      <!-- Legs -->
-      <rect x="6" y="24" width="4" height="6" fill="#E8849A"/>
-      <rect x="12" y="24" width="4" height="6" fill="#E8849A"/>
-      <rect x="18" y="24" width="4" height="6" fill="#E8849A"/>
-      <!-- Spots -->
-      <rect x="8" y="12" width="4" height="4" fill="#EE90AB"/>
-      <rect x="14" y="16" width="6" height="4" fill="#EE90AB"/>
-    </svg>
-  </div>
+  <!-- Entities walk on the ground -->
+  <div id="entity-layer"></div>
 
-  <!-- Grass blocks decoration -->
-  <div class="grass-block" id="grass1">
-    <svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" class="pixel-char">
-      <rect width="16" height="4" fill="#5D9E3A"/>
-      <rect y="4" width="16" height="12" fill="#8B5C2A"/>
-      <rect x="1" y="1" width="2" height="2" fill="#72BF44"/>
-      <rect x="5" y="0" width="3" height="3" fill="#72BF44"/>
-      <rect x="11" y="1" width="2" height="2" fill="#72BF44"/>
-      <rect x="2" y="5" width="3" height="3" fill="#9C6A35"/>
-      <rect x="8" y="7" width="5" height="4" fill="#7A4D22"/>
-      <rect x="3" y="10" width="4" height="3" fill="#9C6A35"/>
-    </svg>
-  </div>
-  <div class="grass-block" id="grass2">
-    <svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" class="pixel-char">
-      <rect width="16" height="4" fill="#5D9E3A"/>
-      <rect y="4" width="16" height="12" fill="#8B5C2A"/>
-      <rect x="1" y="1" width="2" height="2" fill="#72BF44"/>
-      <rect x="5" y="0" width="3" height="3" fill="#72BF44"/>
-      <rect x="11" y="1" width="2" height="2" fill="#72BF44"/>
-    </svg>
-  </div>
+  <!-- Floating items (diamonds, swords, bows…) -->
+  <div id="item-layer"></div>
 
-  <!-- Main card -->
-  <div class="card" id="main-card">
-    <div class="card-inner">
-
-      <div class="title-area">
-        <div class="pixel-heart title-heart">❤</div>
-        <h1 class="main-text">Too awkward to make the first move.</h1>
-        <p class="sub-text">Maybe we could hang out again.</p>
-        <div class="pixel-heart title-heart">❤</div>
-      </div>
-
-      <div class="buttons-row">
-        <button class="pixel-btn yes-btn" id="yes-btn">
-          <span class="btn-text">✨ YES ✨</span>
-        </button>
-        <button class="pixel-btn no-btn" id="no-btn">
-          <span class="btn-text">NO</span>
-        </button>
-      </div>
-
-      <p class="hint-text" id="hint-text">← click wisely, creeper 🐷</p>
-
+  <!-- ===== MAIN CARD ===== -->
+  <div id="main-card" class="card">
+    <div class="card-icons top-row">
+      <canvas class="ci" id="ci-grass"   width="32" height="32"></canvas>
+      <canvas class="ci" id="ci-heart"   width="32" height="32"></canvas>
+      <canvas class="ci" id="ci-flower"  width="32" height="32"></canvas>
     </div>
+
+    <h1 class="main-text">Too awkward to make<br>the first move.</h1>
+    <p  class="sub-text">Maybe we could hang out again.</p>
+
+    <div class="card-icons bot-row">
+      <canvas class="ci" id="ci-diamond" width="32" height="32"></canvas>
+      <canvas class="ci" id="ci-heart2"  width="32" height="32"></canvas>
+      <canvas class="ci" id="ci-sword"   width="32" height="32"></canvas>
+    </div>
+
+    <div id="btn-row">
+      <button id="yes-btn" class="pixel-btn yes-btn">✨ YES ✨</button>
+      <button id="no-btn"  class="pixel-btn no-btn">NO</button>
+    </div>
+
+    <p id="hint" class="hint-text">hover NO if you dare 🐷</p>
   </div>
 
-  <!-- YES popup overlay -->
+  <!-- ===== YES OVERLAY ===== -->
   <div id="yes-overlay" class="hidden">
-    <div id="heart-explosion"></div>
+    <div id="exp-layer"></div>
     <div id="yes-popup" class="pixel-popup">
-      <div class="popup-hearts">❤ ❤ ❤</div>
-      <p class="popup-text">I miss hanging out with you</p>
-      <p class="popup-sub">🐷 Oink oink! Let's go on an adventure! 🐷</p>
-      <div class="popup-hearts">❤ ❤ ❤</div>
+      <div class="popup-hearts">❤ &nbsp; ❤ &nbsp; ❤</div>
+      <p class="popup-msg">I miss hanging out with you</p>
+      <p class="popup-sub">🐷 oink oink 🐷</p>
+      <div class="popup-hearts">❤ &nbsp; ❤ &nbsp; ❤</div>
     </div>
-    <div id="running-pig">
-      <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" width="80" height="80">
-        <rect x="4" y="10" width="22" height="14" fill="#F4A4B8"/>
-        <rect x="16" y="4" width="14" height="12" fill="#F4A4B8"/>
-        <rect x="22" y="10" width="8" height="6" fill="#E8849A"/>
-        <rect x="23" y="11" width="2" height="2" fill="#C0607A"/>
-        <rect x="27" y="11" width="2" height="2" fill="#C0607A"/>
-        <rect x="18" y="6" width="2" height="2" fill="#333"/>
-        <rect x="24" y="6" width="2" height="2" fill="#333"/>
-        <rect x="16" y="2" width="4" height="4" fill="#F4A4B8"/>
-        <rect x="26" y="2" width="4" height="4" fill="#F4A4B8"/>
-        <rect x="6" y="24" width="4" height="6" fill="#E8849A"/>
-        <rect x="12" y="24" width="4" height="6" fill="#E8849A"/>
-        <rect x="18" y="24" width="4" height="6" fill="#E8849A"/>
-      </svg>
-    </div>
-    <div id="confetti-container"></div>
+    <div id="confetti-layer"></div>
   </div>
 
+  <script src="sprites.js"></script>
   <script src="script.js"></script>
 </body>
 </html>
