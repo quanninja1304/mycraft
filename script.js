@@ -48,12 +48,12 @@ function init() {
     gctx.drawImage(tmp, tx, 0);
   }
 
-  // Tăng scale cho nhân vật từ 4 lên 6, từ 3 lên 5
-  MC.createMob('steve',   6, 55, 60,  1, entityLayer);
-  MC.createMob('creeper', 6, 40, window.innerWidth * 0.7, -1, entityLayer);
-  MC.createMob('pig',     6, 35, window.innerWidth * 0.3, 1, entityLayer);
-  const beeCanvas = MC.createMob('bee', 5, 50, window.innerWidth * 0.55, -1, entityLayer);
-  beeCanvas.style.bottom = '80px'; // tăng offset bottom vì scale lớn hơn
+  // Chỉ sử dụng nhân vật Steve theo yêu cầu
+  MC.createMob('steve', 6, 55, 60,  1, entityLayer);
+  MC.createMob('steve', 6, 40, window.innerWidth * 0.7, -1, entityLayer);
+  MC.createMob('steve', 6, 35, window.innerWidth * 0.3, 1, entityLayer);
+  const beeCanvas = MC.createMob('steve', 5, 50, window.innerWidth * 0.55, -1, entityLayer);
+  beeCanvas.style.bottom = '80px';
 
   function decorateCanvas(id, spriteName, scale) {
     const c = document.getElementById(id);
